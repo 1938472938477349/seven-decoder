@@ -38,12 +38,12 @@ def read_number(path):
             if line_class == 0:
                 if len(line) == 1: #handles the double newline
                     continue
-                if len(line) == 28:
-                    for i in range(9):
-                        if line[i * 3 + 1] == '_':
-                            seg_lit[i] = seg_lit[i] | 0b1000000
+
+                for i in range(len(line) // 3):
+                    if line[i * 3 + 1] == '_':
+                        seg_lit[i] = seg_lit[i] | 0b1000000
             elif len(line) == 28 and line_class == 1:
-                for i in range(9):
+                for i in range(len(line) // 3):
                     if line[i * 3] == '|':
                         seg_lit[i] = seg_lit[i] | 0b0000010
                     if line[i * 3 + 1] == '_':
@@ -51,7 +51,7 @@ def read_number(path):
                     if line[i * 3 + 2] == '|':
                         seg_lit[i] = seg_lit[i] | 0b0100000
             elif len(line) == 28 and line_class == 2:
-                for i in range(9):
+                for i in range(len(line) // 3):
                     if line[i * 3] == '|':
                         seg_lit[i] = seg_lit[i] | 0b0000100
                     if line[i * 3 + 1] == '_':
