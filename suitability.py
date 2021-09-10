@@ -16,7 +16,7 @@ e|_|c
   d
 
 We create a dictionary which maps bit-strings to its respective numeral representative.
-Hence, we can store the file and translate every 7 segment into its numerical representation
+We then translate every 7 segment into its numerical representation
 """
 
 
@@ -32,11 +32,11 @@ def read_number(path):
         while (line := file.readline()):
             line_class = line_n % 4  # which line am i currently in
 
-            #if len(line) == 28 and line_class != 3:
+            # if len(line) == 28 and line_class != 3:
             #    continue
 
             if line_class == 0:
-                if len(line) == 1: #handles the double newline
+                if len(line) == 1:  # handles the double newline
                     continue
 
                 for i in range(len(line) // 3):
@@ -76,7 +76,7 @@ def read_number(path):
 
 
 print(read_number('bankocr.txt'))
-
+# output: ['000000000', '111111111', '2222XXXXX', '333333333', '444444444', '555555555', '666666666', 'X77777777', '888888888', '999999999', '123456789']
 
 def valid_num(num_str):
     return num_str.isdecimal() and sum([i * int(num_str[::-1][i - 1]) for i in range(1, 10)]) % 11 == 0
